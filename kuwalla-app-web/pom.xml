@@ -37,6 +37,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.kuwalla.app</groupId>
+            <artifactId>kuwalla-app-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
             <version>${appengine.target.version}</version>
