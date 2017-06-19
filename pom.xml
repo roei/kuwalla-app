@@ -30,7 +30,6 @@
         <module>kuwalla-app-core</module>
         <module>kuwalla-app-web</module>
         <module>kuwalla-app-client</module>
-        <module>kuwalla-app-client</module>
     </modules>
 
 </project>
