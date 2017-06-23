@@ -4,11 +4,13 @@ import java.util.ConcurrentModificationException
 
 import com.google.appengine.api.datastore._
 import com.kuwalla.app.db.DatastoreConnectionFactory
+import com.kuwalla.app.dto.User
+import com.kuwalla.app.service.dao.UserDao
 
 /**
   * Created by roei.azar on 23/06/2017
   */
-class GaeSelectorMappingDao extends BaseDao with UserDao {
+class GaeUserDao extends BaseDao with UserDao {
 
   final val dataStore: DatastoreService = DatastoreConnectionFactory.getConn
   final val ENTITY_KIND = "user"
@@ -16,12 +18,8 @@ class GaeSelectorMappingDao extends BaseDao with UserDao {
 
   override def get(kuwallaId: String): User = {
     val key: Key = KeyFactory.createKey(ENTITY_KIND, kuwallaId)
-    try {
 
-    }
-    catch {
-      case e: EntityNotFoundException => throw new Exception(kuwallaId)
-    }
+    return null;
   }
 
 
@@ -38,6 +36,4 @@ class GaeSelectorMappingDao extends BaseDao with UserDao {
     }
     true
   }
-
-
 }

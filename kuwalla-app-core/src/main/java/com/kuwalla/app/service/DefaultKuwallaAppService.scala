@@ -1,5 +1,6 @@
 package com.kuwalla.app.service
 
+import com.kuwalla.app.dto.User
 import com.kuwalla.app.service.db.DbService
 
 /**

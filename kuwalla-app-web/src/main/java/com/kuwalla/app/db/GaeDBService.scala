@@ -1,5 +1,9 @@
 package com.kuwalla.app.db
 
+import com.kuwalla.app.dao.GaeUserDao
+import com.kuwalla.app.service.dao.UserDao
+import com.kuwalla.app.service.db.DbService
+
 /**
   * Created by roei.azar on 23/06/2017
   */
