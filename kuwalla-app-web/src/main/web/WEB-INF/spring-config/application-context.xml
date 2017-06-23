@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+    <context:annotation-config/>
+    <bean class="com.kuwalla.app.config.KuwallaAppAdditionalConfig"/>
+    <!--<bean id="objectMapper" class="com.wixpress.automation.manager.om.AutomationManagerObjectMapper"/>-->
+
+    <!-- Configure bean to convert JSON to POJO and vice versa -->
+    <bean id="jsonMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+    <!-- Configure to plugin JSON as request and response in method handler -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean id="amConfig" class="com.wixpress.automation.manager.config.DefaultAutomationManagerConfig"/>-->
+
+
+    <bean id="kuwallaAppService"
+          class="com.kuwalla.app.config.DefaultKuwallaAppService">
+        <constructor-arg ref="dbService"/>
+    </bean>
 
 
 </beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+
+<log4j:configuration debug="true">
+    <appender name="consoleAppender" class="org.apache.log4j.ConsoleAppender">
+        <param name="target" value="System.out" />
+        <param name="threshold" value="all" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{1}:%L - %m%n" />
+            <!--
+            ConversionPattern format specification
+            %d      inserts the date; you can specify the format (%d{yyyy-MM-dd HH:mm:ss,SSS})
+            %-5p    inserts the priority log level, 5 characters, left justified
+            %c{1}   inserts the name of the class
+            %L      inserts the line number
+            %m      inserts the user message
+            %n      inserts the separator (for example, a new line)
+            -->
+        </layout>
+    </appender>
+
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+        <!-- When true (default), records will be appended to the end of the file. When false, the file will be cleared before new records are written. -->
+        <param name="append" value="false"/>
+        <param name="maxFileSize" value="512KB"/>
+        <param name="maxBackupIndex" value="10"/>
+        <param name="threshold" value="all" />
+        <param name="file" value="logs/kuwalla-app-logfile.log" /> <!-- log file will be created in PROJECT_ROOT/logs
+         -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- If no loggers are defined (in contrast to below), but the configuration for
+     the "root" logger is defined with some level ans appender(s) attached to it,
+     all debug or higher messages will be printed to the console appender.
+     http://wiki.apache.org/logging-log4j/Log4jXmlFormat -->
+    <logger name="org.springframework.web.servlet">
+        <level value="DEBUG"/>
+    </logger>
+
+    <!-- root logger is configured to output log message at LOG LEVEL level or higher to the appender(s).
+    All loggers inherit their settings from the root logger, so with no other configuration settings,
+    all loggers will output all of their messages to the appender(s) automatically.
+    This may be fine for simple debugging, but more specific logger configuration is going to be required. -->
+    <root>
+        <level value="OFF"/>
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="fileAppender"/>
+    </root>
+</log4j:configuration>
